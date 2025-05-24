@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Guess The Number</h1>
+    <div class="container">
+      <input type="text" id="guessInput" placeholder="Enter Your Number" />
+      <button id="guessBtn">Guess</button>
+      <p class="feedback" id="feedback"></p>
+      <p id="attempts"></p>
+    </div>
+    <script>
+      let secretNumber = 99;
+      let attempts = 0;
+      let guessBtn = document.getElementById("guessBtn");
+      function checkGuess() {
+        const userGuess = document.getElementById("guessInput").value;
+        const feedback = document.getElementById("feedback");
+        const attemptsDisplay = document.getElementById("attempts");
+        if (!userGuess) {
+          feedback.textContent = "Please enter a number!";
+          feedback.style.color = "red";
+        }
+        const guess = parseInt(userGuess);
+        if (guess === secretNumber) {
+          attempts++;
+          feedback.textContent = `Congratulations! You have guessed the number after ${attempts} attempt only`;
+          feedback.style.color = "green";
+        } else {
+          attempts++;
+          feedback.textContent = `Wrong Guess! Total attempts so far are ${attempts}`;
+          feedback.style.color = "red";
+        }
+      }
+      guessBtn.addEventListener("click", checkGuess);
+    </script>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #74ebd5, #9face6);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      h1 {
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        margin-bottom: 20px;
+      }
+
+      .container {
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 300px;
+      }
+
+      #guessInput {
+        width: 80%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      #guessInput:focus {
+        border-color: #9face6;
+        outline: none;
+      }
+
+      #guessBtn {
+        background-color: #6c63ff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+
+      #guessBtn:hover {
+        background-color: #574fd6;
+        transform: scale(1.05);
+      }
+
+      .feedback {
+        font-size: 16px;
+        margin-top: 15px;
+        font-weight: bold;
+      }
+
+      #attempts {
+        margin-top: 10px;
+        color: #333;
+      }
+    </style>
+  </body>
+</html>
